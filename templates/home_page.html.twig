@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Accueil
+{% endblock %}
+
+{% block body %}
+    <section>
+        <h1>Location de buildings</h1>
+        <ul class="products">
+            {% for product in products %}
+                <li class="product">
+                    <figure>
+                        <img src="{{ product.getPicture }}" alt="Picutre of {{ product.getName }}">
+                    </figure>
+                    <div class="product-infos">
+                        <span>
+                            <h2>{{ product.getName|upper }}</h2>
+                            <p id="price">{{ product.getPrice|number_format(0, ',', ' ') }} <sup>€/jour</sup></p>
+                        </span>
+                        <a href=" {{ path( 'product', { 'productId':  loop.index - 1 }) }} "><span>Détails</span></a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Détail : {{ product.name }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ product.getName }}</h1>
+    <img src="{{ product.getPicture }}" alt="Image de {{ product.getName }}">
+{% endblock %}
