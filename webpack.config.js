@@ -10,8 +10,8 @@ let proxyUrl = 'http://wp35.local'
 
 let config = {
     entry: [
-        path.join(__dirname, './public/assets/scss/main.scss'),
-        path.join(__dirname, './public/assets/scripts/main.js')
+        path.join(__dirname, './assets/scss/main.scss'),
+        path.join(__dirname, './assets/scripts/main.js')
     ],
     output: {
         path: path.resolve('./public/dist'),

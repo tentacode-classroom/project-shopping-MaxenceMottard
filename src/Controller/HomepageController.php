@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\BuildingRepository;
+use App\Entity\Building;
 
 class HomepageController extends AbstractController
 {
@@ -13,14 +13,12 @@ class HomepageController extends AbstractController
      */
     public function index()
     {
-        $json = file_get_contents( __DIR__ . '/../../public/data.json' );
-        $products = json_decode( $json );
-
-        $buildings = new BuildingRepository( $products );
-        dump($buildings);
+        $buildings = $this->getDoctrine()
+            ->getRepository(Building::class)
+            ->findAll();
 
         return $this->render('home_page.html.twig', [
-            'products'  =>  $buildings->findAll()
+            'products'  =>  $buildings
         ]);
     }
 }

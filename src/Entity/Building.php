@@ -2,44 +2,107 @@
 
 namespace App\Entity;
 
-class Building {
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\BuildingRepository")
+ */
+class Building
+{
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
     private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     private $name;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
     private $picture;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
     private $price;
 
-    public function __construct( int $id, string $name, string $picture, int $price ) {
-        self::setId( $id );
-        self::setName( $name );
-        self::setPicture( $picture );
-        self::setPrice( $price );
-    }
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Country;
 
-    public function setId ( int $id ) {
-        $this->id = $id;
-    }
-    public function getId (): int {
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $city;
+
+    public function getId(): ?int
+    {
         return $this->id;
     }
 
-    public function setName ( string $name ) {
-        $this->name = $name;
-    }
-    public function getName (): string {
+    public function getName(): ?string
+    {
         return $this->name;
     }
 
-    public function setPicture ( string $picture ) {
-        $this->picture = $picture;
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
     }
-    public function getPicture (): string {
+
+    public function getPicture(): ?string
+    {
         return $this->picture;
     }
 
-    public function setPrice ( int $price ) {
-        $this->price = $price;
+    public function setPicture(?string $picture): self
+    {
+        $this->picture = $picture;
+
+        return $this;
     }
-    public function getPrice (): int {
+
+    public function getPrice(): ?int
+    {
         return $this->price;
+    }
+
+    public function setPrice(?int $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->Country;
+    }
+
+    public function setCountry(string $Country): self
+    {
+        $this->Country = $Country;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
     }
 }

@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\BuildingRepository;
+use App\Entity\Building;
 
 class ProductController extends AbstractController
 {
@@ -13,12 +13,12 @@ class ProductController extends AbstractController
      */
     public function index( $productId = null )
     {
-        $json = file_get_contents( __DIR__ . '/../../public/data.json' );
-        $productArray = json_decode( $json );
-        $buildings = new BuildingRepository( $productArray );
+        $product = $this->getDoctrine()
+            ->getRepository(Building::class)
+            ->find( $productId );
 
         return $this->render('product.html.twig', [
-            'product' => $buildings->findOneById( (int) $productId ),
+            'product' => $product
         ]);
     }
 }
