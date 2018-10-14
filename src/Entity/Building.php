@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,14 +34,11 @@ class Building
     private $price;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $Country;
-
-    /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="App\Entity\City", inversedBy="buildings")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $city;
+
 
     public function getId(): ?int
     {
@@ -82,27 +81,16 @@ class Building
         return $this;
     }
 
-    public function getCountry(): ?string
-    {
-        return $this->Country;
-    }
-
-    public function setCountry(string $Country): self
-    {
-        $this->Country = $Country;
-
-        return $this;
-    }
-
-    public function getCity(): ?string
+    public function getCity(): ?City
     {
         return $this->city;
     }
 
-    public function setCity(string $city): self
+    public function setCity(?City $city): self
     {
         $this->city = $city;
 
         return $this;
     }
+
 }

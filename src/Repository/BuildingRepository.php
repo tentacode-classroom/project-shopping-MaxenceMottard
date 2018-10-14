@@ -19,6 +19,17 @@ class BuildingRepository extends ServiceEntityRepository
         parent::__construct($registry, Building::class);
     }
 
+    public function findAllByPrice ( int $maxResults = null ) {
+        $qb = $this->createQueryBuilder('p')
+                    ->orderBy( 'p.price', 'DESC');
+
+        if ( $maxResults ) {
+            $qb->setMaxResults( $maxResults );
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return Persist[] Returns an array of Persist objects
 //     */

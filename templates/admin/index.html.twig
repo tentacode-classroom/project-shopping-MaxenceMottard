@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+    <h1>Administration</h1>
+
+    <ul>
+        <li><a href="{{ path('building_index') }}">Gestion des Buildings</a></li>
+        <li><a href="{{ path('city_index') }}">Gestion des Villes</a></li>
+        <li><a href="{{ path('country_index') }}">Gestion des Pays</a></li>
+        <li><a href="{{ path('user_index') }}">Gestion des Utilisateurs</a></li>
+    </ul>
+{% endblock %}

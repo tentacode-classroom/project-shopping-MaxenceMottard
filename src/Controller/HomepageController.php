@@ -14,8 +14,9 @@ class HomepageController extends AbstractController
     public function index()
     {
         $buildings = $this->getDoctrine()
-            ->getRepository(Building::class)
-            ->findAll();
+                            ->getRepository(Building::class)
+                            ->findAllByPrice();
+
 
         return $this->render('home_page.html.twig', [
             'products'  =>  $buildings

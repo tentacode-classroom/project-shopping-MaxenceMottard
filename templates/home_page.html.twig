@@ -5,24 +5,27 @@
 {% endblock %}
 
 {% block body %}
-    <section>
-        <h1>Location de buildings</h1>
-        <ul class="products">
-            {% for product in products %}
-                <li class="product">
+    <h1>Location de buildings</h1>
+    <ul class="products">
+        {% for product in products %}
+            <li class="product">
                 <figure><img src="{{ product.picture }}" alt="Picutre of {{ product.name }}"></figure>
 
                 <div class="product-infos">
                         <span>
                             <h2>{{ product.name|upper }}</h2>
-                            <p>{{ product.country }}</p>
-                            <p>- {{ product.city }}</p>
+                            <p class="country">{{ product.city.country.name }}
+                                {% if product.city.country.picture %}
+                                    <img class="country__flag" src="/uploads/flags/{{ product.city.country.picture }}"
+                                         alt="Drapeau de {{ product.city.country.name }}">
+                                {% endif %}
+                            </p>
+                            <p>- {{ product.city.name }}</p>
                             <p id="price">{{ product.price|number_format(0, ',', ' ') }} <sup>€/jour</sup></p>
                         </span>
                     <a href=" {{ path( 'product', { 'productId':  product.id }) }} "><span>Détails</span></a>
                 </div>
             </li>
-            {% endfor %}
-        </ul>
-    </section>
+        {% endfor %}
+    </ul>
 {% endblock %}

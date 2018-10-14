@@ -76,6 +76,13 @@
           font-size: 18px;
           margin-top: 20px;
         }
+        .country {
+
+          &__flag {
+            width: 25px;
+            height: auto;
+          }
+        }
       }
       a {
         overflow: hidden;
